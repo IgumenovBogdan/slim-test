@@ -8,7 +8,9 @@ use Slim\App;
 
 return function (App $app) {
     $app->get('/', function (Request $request, Response $response, $args) {
-        $response->getBody()->write("Hello world!");
+        if ($this->has('postService')) {
+            $response->getBody()->write('Hello World!');
+        }
         return $response;
     });
 

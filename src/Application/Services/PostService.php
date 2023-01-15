@@ -5,19 +5,18 @@ declare(strict_types=1);
 namespace App\Application\Services;
 
 use App\Infrastructure\Repositories\TestPostRepository;
-use Psr\Container\ContainerInterface;
 
 class PostService
 {
-    private ContainerInterface $container;
+    private TestPostRepository $postRepository;
 
-    public function __construct(ContainerInterface $container)
+    public function __construct(TestPostRepository $postRepository)
     {
-        $this->container = $container;
+        $this->postRepository = $postRepository;
     }
 
     public function getUsers(): array
     {
-        return $this->container->get(TestPostRepository::class)->findAll();
+        return $this->postRepository->findAll();
     }
 }

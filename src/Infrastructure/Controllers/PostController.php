@@ -5,22 +5,21 @@ declare(strict_types=1);
 namespace App\Infrastructure\Controllers;
 
 use App\Application\Services\PostService;
-use Psr\Container\ContainerInterface;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
 
 class PostController
 {
-    private ContainerInterface $container;
+    private PostService $postService;
 
-    public function __construct(ContainerInterface $container)
+    public function __construct(PostService $postService)
     {
-        $this->container = $container;
+        $this->postService = $postService;
     }
 
     public function index(ServerRequestInterface $request, ResponseInterface $response): ResponseInterface
     {
-        $response->getBody()->getMetadata($this->container->get(PostService::class)->getUsers());
+        $response->getBody()->write(print_r($this->postService->getUsers(), true));
 
         return $response;
     }
