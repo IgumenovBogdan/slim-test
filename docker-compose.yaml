@@ -36,9 +36,9 @@ services:
             - mysql-volume:/var/lib/mysql
         environment:
             - "MYSQL_ROOT_PASSWORD=123456"
-            - "MYSQL_USER=utmk"
+            - "MYSQL_USER=db_user"
             - "MYSQL_PASSWORD=secret"
-            - "MYSQL_DATABASE=utmk"
+            - "MYSQL_DATABASE=db_name"
         ports:
             - "33062:3306"
 
