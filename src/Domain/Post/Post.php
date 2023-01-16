@@ -4,7 +4,9 @@ declare(strict_types=1);
 
 namespace App\Domain\Post;
 
-class Post
+use JsonSerializable;
+
+class Post implements JsonSerializable
 {
     private int $id;
 
@@ -40,5 +42,15 @@ class Post
     public function getViews(): int
     {
         return $this->views;
+    }
+
+    public function jsonSerialize(): array
+    {
+        return [
+            'id' => $this->id,
+            'title' => $this->title,
+            'text' => $this->text,
+            'views' => $this->views,
+        ];
     }
 }

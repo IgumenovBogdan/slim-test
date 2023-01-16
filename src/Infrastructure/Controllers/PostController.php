@@ -19,7 +19,7 @@ class PostController
 
     public function index(ServerRequestInterface $request, ResponseInterface $response): ResponseInterface
     {
-        $response->getBody()->write(print_r($this->postService->getUsers(), true));
+        $response->getBody()->write(json_encode($this->postService->getUsers()));
 
         return $response;
     }
